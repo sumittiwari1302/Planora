@@ -4,13 +4,14 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
 const FEATURES = [
-  "Create tasks with title, description, priority, and a due date",
-  "Quick-set due dates to Today or Tomorrow",
+  "Create tasks with a title, description, and priority",
+  "Add tasks from a quick form or a modal dialog",
   "Mark tasks as completed or pending",
-  "Delete tasks",
-  "Live statistics and a completion progress ring",
+  "Delete tasks when they are done",
+  "Live statistics — total, completed, and pending",
   "Filter by All, Pending, or Completed",
   "localStorage persistence across refreshes",
+  "Reusable components built with props",
 ];
 
 const TECH_STACK = [
@@ -31,6 +32,13 @@ const CONCEPTS = [
   "Browser localStorage for persistence",
   "Custom hooks (useTasks)",
   "Next.js App Router and routing with Link",
+];
+
+const HOW_TO_USE = [
+  "Open the Dashboard and add your first task with a title, description, and priority.",
+  "Use the All, Pending, or Completed tabs to filter the list.",
+  "Click Mark Completed when you finish a task, or Mark Pending to reopen it.",
+  "Delete a task whenever you no longer need it — everything stays saved in your browser.",
 ];
 
 export default function AboutPage() {
@@ -55,10 +63,23 @@ export default function AboutPage() {
             <h2 className="aboutCardTitle">What is Planora?</h2>
             <p className="aboutCardText">
               Planora is a task manager where you can create tasks with a title,
-              description, priority, and a due date, mark them as completed or
-              pending, filter them, and delete them. All tasks are saved in
-              your browser with localStorage, so your list survives a refresh.
+              description, and priority, mark them as completed or pending,
+              filter them, and delete them. All tasks are saved in your browser
+              with localStorage, so your list survives a refresh. The app is a
+              single-page experience that grows into a small multi-page site
+              using Next.js App Router.
             </p>
+          </section>
+
+          <section className="aboutCard">
+            <h2 className="aboutCardTitle">How to Use</h2>
+            <ol className="aboutSteps">
+              {HOW_TO_USE.map((step) => (
+                <li className="aboutStep" key={step}>
+                  {step}
+                </li>
+              ))}
+            </ol>
           </section>
 
           <section className="aboutCard">

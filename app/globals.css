@@ -114,13 +114,58 @@ body {
 .aboutList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
   list-style: none;
 }
 
 .aboutListItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
   font-size: 15px;
   color: #57534e;
+}
+
+.aboutListItem::before {
+  content: "✓";
+  color: #16a34a;
+  font-weight: 700;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.aboutSteps {
+  counter-reset: steps;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.aboutStep {
+  counter-increment: steps;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 15px;
+  color: #57534e;
+}
+
+.aboutStep::before {
+  content: counter(steps);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .aboutLink {
