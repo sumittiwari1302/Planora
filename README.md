@@ -14,6 +14,7 @@ Planora is a single-page application where users can manage their daily tasks. I
 - Delete tasks
 - View live statistics (Total / Completed / Pending)
 - Filter tasks by All, Pending, or Completed from the header tabs
+- Three pages using Next.js App Router: `/` Dashboard, `/tasks` All Tasks, `/about` About
 - Tasks are saved in `localStorage`, so they survive a page refresh
 - Profile menu with a link to the author's GitHub profile
 - Clean, responsive layout that works on desktop, tablet, and mobile
@@ -64,21 +65,28 @@ Each component lives in its own folder together with its CSS Module, so all the 
 
 ```
 Planora/
-├── app/                         Pages and layout
+├── app/                         Pages and layout (Next.js App Router)
 │   ├── layout.tsx               App frame (metadata, global styles)
-│   ├── page.tsx                 Main page — holds all state
-│   └── globals.css              Global styles
+│   ├── globals.css              Global styles
+│   ├── page.tsx                 / — Dashboard
+│   ├── tasks/
+│   │   └── page.tsx             /tasks — All Tasks
+│   └── about/
+│       └── page.tsx             /about — About the application
 ├── components/                  Reusable UI components
 │   ├── AddTaskModal/
 │   │   ├── AddTaskModal.tsx     Popup dialog for creating tasks
 │   │   └── AddTaskModal.module.css
+│   ├── FilterTabs/              All / Pending / Completed filter pills
 │   ├── Footer/
-│   ├── Header/                  Logo, filter tabs, profile menu
+│   ├── Header/                  Logo, page navigation, profile menu
 │   ├── Hero/
 │   ├── TaskCard/                Single task display + toggle/delete
 │   ├── TaskForm/                Full-width add-task form
 │   ├── TaskList/                Renders a list of TaskCards
 │   └── TaskStats/               Total / Completed / Pending counts
+├── hooks/
+│   └── useTasks.ts              Shared task state + localStorage logic
 ├── types/
 │   └── task.ts                  The Task type definition
 ├── public/                      Static assets
@@ -100,7 +108,9 @@ Planora/
 - Conditional rendering (completed vs pending styles, empty states)
 - Persisting data in the browser with `localStorage`, `JSON.stringify()`, and `JSON.parse()`
 - Using Client Components in Next.js when browser APIs like `localStorage` are needed
+- Extracting shared logic into a custom hook (`useTasks`)
 - Styling with CSS Modules and making the layout responsive
+- Next.js App Router with dynamic page routes and `next/link` navigation
 
 ## Future Improvements
 
