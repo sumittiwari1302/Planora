@@ -1,5 +1,5 @@
 import { FiCheckSquare, FiGithub, FiHeart, FiExternalLink } from "react-icons/fi";
-import styles from "@/styles/Footer.module.css";
+import styles from "@/components/Footer/Footer.module.css";
 
 export default function Footer() {
   const year = new Date().getFullYear();

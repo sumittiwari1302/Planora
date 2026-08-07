@@ -1,6 +1,6 @@
 # Planora
 
-A simple, beginner-friendly task tracker built with Next.js (App Router), React, and TypeScript. Create, complete, filter, and delete tasks — everything is saved in your browser using `localStorage`.
+A simple, beginner-friendly task tracker built with **Next.js (App Router)**, **React**, and **TypeScript**. Create, complete, filter, and delete tasks — everything is saved in your browser using `localStorage`.
 
 ## About
 
@@ -9,7 +9,7 @@ Planora is a single-page application where users can manage their daily tasks. I
 ## Features
 
 - Add new tasks with a title, description, and priority (High / Medium / Low)
-- Add tasks quickly from a popup modal opened from the header
+- Add tasks instantly from a popup modal opened from the header
 - Mark tasks as completed or pending
 - Delete tasks
 - View live statistics (Total / Completed / Pending)
@@ -28,39 +28,64 @@ Planora is a single-page application where users can manage their daily tasks. I
 
 ## Getting Started
 
-1. Install dependencies:
+Follow these steps to run the project locally.
+
+### Prerequisites
+
+- Node.js (version 18 or newer)
+- npm
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/sumittiwari1302/Planora.git
+cd Planora
+```
+
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-2. Run the development server:
+3. Run the development server:
 
 ```bash
 npm run dev
 ```
 
-3. Open http://localhost:3000 (or the port shown in your terminal) in your browser.
+4. Open http://localhost:3000 (or the port shown in your terminal) in your browser.
 
 ## Project Structure
 
+Each component lives in its own folder together with its CSS Module, so all the styles for a component stay in one place.
+
 ```
-app/             Pages and layout
-  layout.tsx     App frame (title, global styles)
-  page.tsx       Main page — holds all state
-  globals.css    Global styles
-components/      Reusable UI components
-  Header.tsx
-  AddTaskModal.tsx
-  TaskForm.tsx
-  TaskStats.tsx
-  TaskList.tsx
-  TaskCard.tsx
-  Hero.tsx
-  Footer.tsx
-types/
-  task.ts        The Task type definition
-styles/          CSS Modules (one per component)
+Planora/
+├── app/                         Pages and layout
+│   ├── layout.tsx               App frame (metadata, global styles)
+│   ├── page.tsx                 Main page — holds all state
+│   └── globals.css              Global styles
+├── components/                  Reusable UI components
+│   ├── AddTaskModal/
+│   │   ├── AddTaskModal.tsx     Popup dialog for creating tasks
+│   │   └── AddTaskModal.module.css
+│   ├── Footer/
+│   ├── Header/                  Logo, filter tabs, profile menu
+│   ├── Hero/
+│   ├── TaskCard/                Single task display + toggle/delete
+│   ├── TaskForm/                Full-width add-task form
+│   ├── TaskList/                Renders a list of TaskCards
+│   └── TaskStats/               Total / Completed / Pending counts
+├── types/
+│   └── task.ts                  The Task type definition
+├── public/                      Static assets
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
 ## What I Learned
@@ -87,7 +112,3 @@ styles/          CSS Modules (one per component)
 - Drag-and-drop task reordering
 - Toast notifications for add / delete actions
 - A task completion progress bar
-
-## Live Demo
-
-Run the project locally with the steps above, or push it to your own GitHub repository.

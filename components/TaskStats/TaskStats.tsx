@@ -1,4 +1,4 @@
-import styles from "@/styles/TaskStats.module.css";
+import styles from "@/components/TaskStats/TaskStats.module.css";
 
 type TaskStatsProps = {
   total: number;

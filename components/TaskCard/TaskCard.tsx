@@ -1,6 +1,6 @@
 import type { Task } from "@/types/task";
 import { FiCheckCircle, FiCircle, FiTrash2 } from "react-icons/fi";
-import styles from "@/styles/TaskCard.module.css";
+import styles from "@/components/TaskCard/TaskCard.module.css";
 
 type TaskCardProps = {
   task: Task;

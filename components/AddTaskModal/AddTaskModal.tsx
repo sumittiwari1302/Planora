@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import type { Task } from "@/types/task";
-import styles from "@/styles/AddTaskModal.module.css";
+import styles from "@/components/AddTaskModal/AddTaskModal.module.css";
 
 type AddTaskModalProps = {
   onClose: () => void;

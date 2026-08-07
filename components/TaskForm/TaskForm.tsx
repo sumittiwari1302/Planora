@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import type { Task } from "@/types/task";
-import styles from "@/styles/TaskForm.module.css";
+import styles from "@/components/TaskForm/TaskForm.module.css";
 
 type TaskFormProps = {
   onAdd: (task: Task) => void;

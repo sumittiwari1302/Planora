@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { FiCheckSquare, FiGithub, FiPlus, FiUser } from "react-icons/fi";
-import styles from "@/styles/Header.module.css";
+import styles from "@/components/Header/Header.module.css";
 
 type HeaderProps = {
   currentFilter: string;

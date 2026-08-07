@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from "react";
 import type { Task } from "@/types/task";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import TaskStats from "@/components/TaskStats";
-import TaskForm from "@/components/TaskForm";
-import TaskList from "@/components/TaskList";
-import AddTaskModal from "@/components/AddTaskModal";
-import Footer from "@/components/Footer";
+import Header from "@/components/Header/Header";
+import Hero from "@/components/Hero/Hero";
+import TaskStats from "@/components/TaskStats/TaskStats";
+import TaskForm from "@/components/TaskForm/TaskForm";
+import TaskList from "@/components/TaskList/TaskList";
+import AddTaskModal from "@/components/AddTaskModal/AddTaskModal";
+import Footer from "@/components/Footer/Footer";
 
 const STORAGE_KEY = "task-tracker-tasks-v2";
 

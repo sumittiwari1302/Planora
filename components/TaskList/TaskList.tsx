@@ -1,6 +1,6 @@
 import type { Task } from "@/types/task";
-import TaskCard from "./TaskCard";
-import styles from "@/styles/TaskList.module.css";
+import TaskCard from "@/components/TaskCard/TaskCard";
+import styles from "@/components/TaskList/TaskList.module.css";
 
 type TaskListProps = {
   tasks: Task[];
