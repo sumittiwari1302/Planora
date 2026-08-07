@@ -1,26 +1,27 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FiCheckSquare, FiGithub, FiPlus, FiUser } from "react-icons/fi";
 import styles from "@/components/Header/Header.module.css";
 
 type HeaderProps = {
-  currentFilter: string;
-  onFilterChange: (filter: string) => void;
-  onAddTask: () => void;
+  onAddTask?: () => void;
 };
 
-const FILTERS = ["All", "Pending", "Completed"];
+const NAV_LINKS = [
+  { href: "/", label: "Dashboard" },
+  { href: "/tasks", label: "Tasks" },
+  { href: "/about", label: "About" },
+];
 
 const USER_NAME = "Sumit Tiwari";
 const USER_EMAIL = "sumittiwari0307@gmail.com";
 const GITHUB_USERNAME = "sumittiwari1302";
 
-export default function Header({
-  currentFilter,
-  onFilterChange,
-  onAddTask,
-}: HeaderProps) {
+export default function Header({ onAddTask }: HeaderProps) {
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -47,42 +48,46 @@ export default function Header({
 
   function handleAddTask() {
     setMenuOpen(false);
-    onAddTask();
+    if (onAddTask) {
+      onAddTask();
+    }
   }
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <div className={styles.brand}>
+        <Link href="/" className={styles.brand}>
           <span className={styles.logo}>
             <FiCheckSquare />
           </span>
           <span className={styles.brandName}>Planora</span>
-        </div>
+        </Link>
 
         <nav className={styles.nav}>
-          {FILTERS.map((filter) => (
-            <button
-              key={filter}
-              className={`${styles.tab} ${
-                currentFilter === filter ? styles.tabActive : ""
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`${styles.navLink} ${
+                pathname === link.href ? styles.navLinkActive : ""
               }`}
-              onClick={() => onFilterChange(filter)}
             >
-              {filter}
-            </button>
+              {link.label}
+            </Link>
           ))}
         </nav>
 
         <div className={styles.right}>
-          <button
-            type="button"
-            className={styles.addButton}
-            onClick={handleAddTask}
-          >
-            <FiPlus />
-            <span>Add Task</span>
-          </button>
+          {onAddTask && (
+            <button
+              type="button"
+              className={styles.addButton}
+              onClick={handleAddTask}
+            >
+              <FiPlus />
+              <span>Add Task</span>
+            </button>
+          )}
 
           <div className={styles.profile} ref={menuRef}>
             <button

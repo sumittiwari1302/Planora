@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FiCheckSquare, FiGithub, FiHeart, FiExternalLink } from "react-icons/fi";
 import styles from "@/components/Footer/Footer.module.css";
 
@@ -21,22 +22,28 @@ export default function Footer() {
 
         <div className={styles.column}>
           <p className={styles.columnTitle}>Quick Links</p>
-          <a className={styles.link} href="#add-task">
-            Add a Task
-          </a>
+          <Link className={styles.link} href="/">
+            Dashboard
+          </Link>
+          <Link className={styles.link} href="/tasks">
+            All Tasks
+          </Link>
+          <Link className={styles.link} href="/about">
+            About
+          </Link>
+        </div>
+
+        <div className={styles.column}>
+          <p className={styles.columnTitle}>Resources</p>
           <a
             className={styles.link}
-            href="https://github.com"
+            href="https://github.com/sumittiwari1302"
             target="_blank"
             rel="noreferrer"
           >
             <FiGithub />
             GitHub
           </a>
-        </div>
-
-        <div className={styles.column}>
-          <p className={styles.columnTitle}>Resources</p>
           <a
             className={styles.link}
             href="https://nextjs.org/docs"
