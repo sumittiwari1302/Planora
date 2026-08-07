@@ -44,6 +44,77 @@ body {
   gap: 24px;
 }
 
+.pageHeading {
+  margin-bottom: 24px;
+}
+
+.pageTitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: #1c1917;
+}
+
+.pageSubtitle {
+  margin-top: 6px;
+  font-size: 16px;
+  color: #78716c;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.aboutCard {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(28, 25, 23, 0.04);
+}
+
+.aboutCardTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1c1917;
+  margin-bottom: 12px;
+}
+
+.aboutCardText {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #57534e;
+}
+
+.aboutList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.aboutListItem {
+  font-size: 15px;
+  color: #57534e;
+}
+
+.aboutLink {
+  color: #16a34a;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.aboutLink:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .addTaskSection {
   width: 100%;
   background: #ffffff;
