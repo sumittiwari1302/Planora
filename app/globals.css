@@ -1,26 +1,99 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+#add-task {
+  scroll-margin-top: 100px;
+}
+
+html,
+body {
+  background: #fafaf9;
+  color: #44403c;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  flex: 1;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 32px 48px 48px;
+}
+
+.taskColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.addTaskSection {
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #e7e5e4;
+  border-bottom: 1px solid #e7e5e4;
+  padding: 40px 48px;
+}
+
+.addTaskInner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.addTaskHeading {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.addTaskTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1c1917;
+}
+
+.addTaskSubtitle {
+  font-size: 15px;
+  color: #78716c;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 24px 24px 40px;
+  }
+
+  .addTaskSection {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 16px 32px;
+  }
+
+  .addTaskSection {
+    padding: 28px 16px;
+  }
 }
