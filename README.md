@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Planora
+
+A simple, beginner-friendly task tracker built with Next.js (App Router), React, and TypeScript. Create, complete, filter, and delete tasks — everything is saved in your browser using `localStorage`.
+
+## About
+
+Planora is a single-page application where users can manage their daily tasks. It was built as an assignment to practise the fundamentals of Next.js and React: components, props, state, event handling, conditional rendering, and persisting data in the browser.
+
+## Features
+
+- Add new tasks with a title, description, and priority (High / Medium / Low)
+- Add tasks quickly from a popup modal opened from the header
+- Mark tasks as completed or pending
+- Delete tasks
+- View live statistics (Total / Completed / Pending)
+- Filter tasks by All, Pending, or Completed from the header tabs
+- Tasks are saved in `localStorage`, so they survive a page refresh
+- Profile menu with a link to the author's GitHub profile
+- Clean, responsive layout that works on desktop, tablet, and mobile
+
+## Tech Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- CSS Modules
+- react-icons
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Open http://localhost:3000 (or the port shown in your terminal) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/             Pages and layout
+  layout.tsx     App frame (title, global styles)
+  page.tsx       Main page — holds all state
+  globals.css    Global styles
+components/      Reusable UI components
+  Header.tsx
+  AddTaskModal.tsx
+  TaskForm.tsx
+  TaskStats.tsx
+  TaskList.tsx
+  TaskCard.tsx
+  Hero.tsx
+  Footer.tsx
+types/
+  task.ts        The Task type definition
+styles/          CSS Modules (one per component)
+```
 
-## Learn More
+## What I Learned
 
-To learn more about Next.js, take a look at the following resources:
+- Breaking a UI into reusable components (Header, TaskList, TaskCard, Footer, etc.)
+- Passing data between components with props
+- Managing state with `useState`
+- Handling events (form submit, button clicks)
+- Rendering lists with `map()`
+- Filtering tasks with `filter()`
+- Updating state immutably with the spread operator
+- Conditional rendering (completed vs pending styles, empty states)
+- Persisting data in the browser with `localStorage`, `JSON.stringify()`, and `JSON.parse()`
+- Using Client Components in Next.js when browser APIs like `localStorage` are needed
+- Styling with CSS Modules and making the layout responsive
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Future Improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Due dates and overdue task indication
+- Search and sorting (by priority, title, or date)
+- Edit existing tasks
+- Categories and tags
+- Dark / light mode
+- Drag-and-drop task reordering
+- Toast notifications for add / delete actions
+- A task completion progress bar
 
-## Deploy on Vercel
+## Live Demo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run the project locally with the steps above, or push it to your own GitHub repository.
