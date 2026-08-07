@@ -1,0 +1,80 @@
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.statCard {
+  background: #ffffff;
+  border: 1px solid #e7e5e4;
+  border-radius: 18px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(28, 25, 23, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(28, 25, 23, 0.07);
+}
+
+.totalCard {
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+.totalCard .statValue {
+  color: #d97706;
+}
+
+.totalCard .statLabel {
+  color: #92400e;
+}
+
+.completedCard {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.completedCard .statValue {
+  color: #16a34a;
+}
+
+.completedCard .statLabel {
+  color: #166534;
+}
+
+.pendingCard {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.pendingCard .statValue {
+  color: #ea580c;
+}
+
+.pendingCard .statLabel {
+  color: #9a3412;
+}
+
+.statValue {
+  display: block;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.statLabel {
+  display: block;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+}
