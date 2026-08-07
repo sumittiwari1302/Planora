@@ -66,12 +66,36 @@ body {
   gap: 24px;
 }
 
+.aboutIntro {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.aboutIntroLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #34d399, #22c55e);
+  color: #ffffff;
+  font-size: 30px;
+  flex-shrink: 0;
+}
+
 .aboutCard {
   background: #ffffff;
   border: 1px solid #e7e5e4;
   border-radius: 18px;
   padding: 24px;
   box-shadow: 0 1px 3px rgba(28, 25, 23, 0.04);
+}
+
+.aboutCardWide {
+  grid-column: 1 / -1;
 }
 
 .aboutCardTitle {
@@ -109,9 +133,60 @@ body {
   text-decoration: underline;
 }
 
+.aboutAuthor {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.aboutAuthorAvatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #fff4e6;
+  border: 2px solid #ffe0c2;
+  color: #ea580c;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.aboutAuthorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.aboutAuthorName {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1c1917;
+}
+
+.aboutAuthorLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 14px;
+  color: #57534e;
+  text-decoration: none;
+  width: fit-content;
+  transition: color 0.2s ease;
+}
+
+.aboutAuthorLink:hover {
+  color: #16a34a;
+}
+
 @media (max-width: 700px) {
   .aboutGrid {
     grid-template-columns: 1fr;
+  }
+
+  .aboutIntro {
+    align-items: flex-start;
   }
 }
 
