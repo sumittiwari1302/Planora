@@ -4,7 +4,7 @@ A simple, beginner-friendly task tracker built with **Next.js (App Router)**, **
 
 ## About
 
-Planora is a single-page application where users can manage their daily tasks. It was built as an assignment to practise the fundamentals of Next.js and React: components, props, state, event handling, conditional rendering, and persisting data in the browser.
+Planora is a task manager that lets you create, complete, filter, and delete daily tasks. It was built as an assignment to practise the fundamentals of Next.js and React: components, props, state, event handling, conditional rendering, and persisting data in the browser.
 
 ## Features
 
@@ -13,7 +13,7 @@ Planora is a single-page application where users can manage their daily tasks. I
 - Mark tasks as completed or pending
 - Delete tasks
 - View live statistics (Total / Completed / Pending)
-- Filter tasks by All, Pending, or Completed from the header tabs
+- Filter tasks by All, Pending, or Completed
 - Three pages using Next.js App Router: `/` Dashboard, `/tasks` All Tasks, `/about` About
 - Tasks are saved in `localStorage`, so they survive a page refresh
 - Profile menu with a link to the author's GitHub profile
