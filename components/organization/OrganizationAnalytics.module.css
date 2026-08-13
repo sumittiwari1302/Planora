@@ -1,0 +1,40 @@
+.section {
+  padding: 3rem 0;
+}
+
+.section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section .sectionTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.statCard {
+  padding: 2rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.statCard .statIcon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  color: #667eea;
+}
+
+.statCard .statValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.statCard .statLabel {
+  font-size: 0.875rem;
+  color: #666;
+}

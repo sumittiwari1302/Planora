@@ -1,124 +1,182 @@
-# Planora
+# Planora - Task Tracker
 
-A simple, beginner-friendly task tracker built with **Next.js (App Router)**, **React**, and **TypeScript**. Create, complete, filter, and delete tasks — everything is saved in your browser using `localStorage`.
+A complete, production-style Next.js task tracker application with full CRUD operations, dynamic routing, and persistent localStorage data.
 
-## About
+## 📋 Overview
 
-Planora is a task manager that lets you create, complete, filter, and delete daily tasks. It was built as an assignment to practise the fundamentals of Next.js and React: components, props, state, event handling, conditional rendering, and persisting data in the browser.
+Planora is a feature-rich task manager built with **Next.js 16 (App Router)**, **React 19**, and **TypeScript**. It demonstrates complete task management capabilities including create, read, update, and delete operations, with all data persisted in the browser's `localStorage`.
 
-## Features
+## ✨ Features
 
-- Add new tasks with a title, description, and priority (High / Medium / Low)
-- Add tasks instantly from a popup modal opened from the header
-- Mark tasks as completed or pending
-- Delete tasks
-- View live statistics (Total / Completed / Pending)
-- Filter tasks by All, Pending, or Completed
-- Three pages using Next.js App Router: `/` Dashboard, `/tasks` All Tasks, `/about` About
-- Tasks are saved in `localStorage`, so they survive a page refresh
-- Profile menu with a link to the author's GitHub profile
-- Clean, responsive layout that works on desktop, tablet, and mobile
+### Core Functionality
 
-## Tech Stack
+- **Create tasks** - Add new tasks with title, description, priority (High/Medium/Low), and due date
+- **View all tasks** - See the complete task list on the `/tasks` page
+- **View individual task** - Dynamic task detail page at `/tasks/[id]` with full task information
+- **Edit tasks** - Modify task title, description, priority, and due date with confirmation
+- **Delete tasks** - Remove tasks with a confirmation dialog
+- **Mark completed/pending** - Toggle task status with visual indicators
 
-- Next.js (App Router)
-- React
-- TypeScript
-- CSS Modules
-- react-icons
+### Navigation
 
-## Getting Started
+- **`/` (Dashboard)** - Main task tracker with add task form, stats, and task list
+- **`/tasks`** - All tasks page with filtering and task listing
+- **`/tasks/[id]`** - Dynamic route for individual task details (e.g., `/tasks/1`, `/tasks/2`)
+- **`/about`** - About page with application information
 
-Follow these steps to run the project locally.
+### Data Persistence
+
+- **localStorage persistence** - All tasks survive page refreshes and browser restarts
+- **Automatic sync** - Create, edit, and delete operations all update localStorage
+- **Graceful fallback** - Handles missing or corrupted localStorage data
+
+### UI & UX
+
+- **Task cards** with priority badges, status indicators, and action buttons
+- **Add task modal** with form validation
+- **Edit task form** with pre-populated fields
+- **Delete confirmation dialog** before permanent removal
+- **Filter tabs** - All / Pending / Completed
+- **Task statistics** - Total, completed, and pending counts
+- **Responsive design** - Works on mobile, tablet, and desktop
+- **Loading states** and **empty states** handled gracefully
+
+### Component Architecture
+
+- **Reusable components** - Header, TaskCard, TaskList, TaskStats, FilterTabs, TaskForm, AddTaskModal, ConfirmDialog, Footer
+- **Custom hook** - `useTasks` encapsulates all task logic and localStorage persistence
+- **Type-safe** - Full TypeScript support with proper type definitions
+- **CSS Modules** - Scoped, modular styling
+
+## 🛠️ Tech Stack
+
+- **Next.js 16** - App Router with file-based routing
+- **React 19** - UI library
+- **TypeScript** - Type-safe code
+- **CSS Modules** - Scoped component styling
+- **react-icons** - Icon set
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js (version 18 or newer)
-- npm
+- npm or yarn
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 
 ```bash
 git clone https://github.com/sumittiwari1302/Planora.git
 cd Planora
 ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 
 ```bash
 npm install
 ```
 
-3. Run the development server:
+3. **Run the development server:**
 
 ```bash
 npm run dev
 ```
 
-4. Open http://localhost:3000 (or the port shown in your terminal) in your browser.
+4. **Open** [http://localhost:3000](http://localhost:3000) in your browser
 
-## Project Structure
-
-Each component lives in its own folder together with its CSS Module, so all the styles for a component stay in one place.
+## 📁 Project Structure
 
 ```
 Planora/
-├── app/                         Pages and layout (Next.js App Router)
-│   ├── layout.tsx               App frame (metadata, global styles)
-│   ├── globals.css              Global styles
-│   ├── page.tsx                 / — Dashboard
+├── app/                              Pages and layout (Next.js App Router)
+│   ├── layout.tsx                    App frame (metadata, global styles)
+│   ├── globals.css                   Global styles
+│   ├── page.tsx                      / — Dashboard / Home
 │   ├── tasks/
-│   │   └── page.tsx             /tasks — All Tasks
+│   │   └── page.tsx                  /tasks — All Tasks
 │   └── about/
-│       └── page.tsx             /about — About the application
-├── components/                  Reusable UI components
+│       └── page.tsx                  /about — About the application
+│
+├── components/                       Reusable UI components
 │   ├── AddTaskModal/
-│   │   ├── AddTaskModal.tsx     Popup dialog for creating tasks
+│   │   ├── AddTaskModal.tsx          Popup dialog for creating/editing tasks
 │   │   └── AddTaskModal.module.css
-│   ├── FilterTabs/              All / Pending / Completed filter pills
-│   ├── Footer/
-│   ├── Header/                  Logo, page navigation, profile menu
-│   ├── Hero/
-│   ├── TaskCard/                Single task display + toggle/delete
-│   ├── TaskForm/                Full-width add-task form
-│   ├── TaskList/                Renders a list of TaskCards
-│   └── TaskStats/               Total / Completed / Pending counts
-├── hooks/
-│   └── useTasks.ts              Shared task state + localStorage logic
-├── types/
-│   └── task.ts                  The Task type definition
-├── public/                      Static assets
+│   ├── ConfirmDialog/
+│   │   ├── ConfirmDialog.tsx         Confirmation dialog for deletions
+│   │   └── ConfirmDialog.module.css
+│   ├── FilterTabs/                   All / Pending / Completed filter pills
+│   ├── Footer/                       Footer with links and copyright
+│   ├── Header/                       Logo, navigation, task count, profile menu, Add Task button
+│   ├── Hero/                         Hero section with branding
+│   ├── TaskCard/                     Single task display with toggle/delete
+│   │   └── TaskCard.module.css
+│   ├── TaskForm/                     Full-width add-task form
+│   ├── TaskList/                     Renders a list of TaskCards
+│   └── TaskStats/                    Total / Completed / Pending counts
+│       └── TaskStats.module.css
+│
+├── hooks/                          Custom React hooks
+│   └── useTasks.ts                   Shared task state + localStorage logic
+│
+├── types/                          TypeScript type definitions
+│   └── task.ts                       The Task type definition
+│
+├── utils/                          Utility modules
+│   └── storage.js                    localStorage read/write helpers
+│
+├── public/                         Static assets
 ├── .gitignore
 ├── package.json
 ├── tsconfig.json
+├── next.config.ts
 └── README.md
 ```
 
-## What I Learned
+## 🎯 Minimum Requirements Checklist
 
-- Breaking a UI into reusable components (Header, TaskList, TaskCard, Footer, etc.)
-- Passing data between components with props
-- Managing state with `useState`
-- Handling events (form submit, button clicks)
-- Rendering lists with `map()`
-- Filtering tasks with `filter()`
-- Updating state immutably with the spread operator
-- Conditional rendering (completed vs pending styles, empty states)
-- Persisting data in the browser with `localStorage`, `JSON.stringify()`, and `JSON.parse()`
-- Using Client Components in Next.js when browser APIs like `localStorage` are needed
-- Extracting shared logic into a custom hook (`useTasks`)
-- Styling with CSS Modules and making the layout responsive
-- Next.js App Router with dynamic page routes and `next/link` navigation
+- [x] Multiple Next.js routes (`/`, `/tasks`, `/tasks/[id]`, `/about`)
+- [x] Dynamic route for individual tasks (`/tasks/[id]`)
+- [x] Create task functionality
+- [x] View all tasks
+- [x] View individual task
+- [x] Edit task functionality
+- [x] Delete task functionality
+- [x] Mark task completed/pending
+- [x] Data persisted in localStorage
+- [x] Data remains after refresh
+- [x] Good UI
+- [x] Responsive design
+- [x] Reusable components
+- [x] Clean project structure
+- [x] Meaningful Git commits
+- [x] README documentation
 
-## Future Improvements
+## 🌟 Additional Features Implemented
 
-- Due dates and overdue task indication
-- Search and sorting (by priority, title, or date)
-- Edit existing tasks
-- Categories and tags
-- Dark / light mode
-- Drag-and-drop task reordering
-- Toast notifications for add / delete actions
-- A task completion progress bar
+- **Due dates** - Each task can have an optional due date displayed on task cards and detail pages
+- **Task counter** - Header shows total task count with badge
+- **Status indicators** - Visual completed/pending badges on task cards
+- **Priority colors** - High (red), Medium (orange), Low (green) priority styling
+- **Edit task with form** - Full edit form with pre-populated fields and save/cancel
+- **Delete confirmation modal** - Prevents accidental deletions
+- **Dynamic routing** - Proper `/tasks/[id]` routes with Next.js App Router
+- **Filter by status** - All / Pending / Completed filtering
+- **View in List** - Link from detail page back to tasks list with filter applied
+- **Comprehensive error handling** - Task not found pages, missing data fallbacks
+- **Full CRUD operations** - All create, read, update, delete operations working
+- **LocalStorage persistence** - All operations (create, edit, delete, toggle) update localStorage
+
+## 📦 Available Scripts
+
+- `npm run dev` - Start development server (Turbopack)
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 📚 Learn More
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [React Documentation](https://react.dev/)
+- [TypeScript Handbook](https://www.typescript-handbook.io/)

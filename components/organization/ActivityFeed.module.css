@@ -1,0 +1,88 @@
+.section {
+  padding: 3rem 0;
+}
+
+.section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section .sectionTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.activityList {
+  display: grid;
+  gap: 1rem;
+}
+
+.activityItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.activityItem .activityIcon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.activityItem .activityContent {
+  flex: 1;
+}
+
+.activityItem .activityTitle {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.activityItem .activityDescription {
+  font-size: 0.875rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.activityItem .activityTime {
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 0.25rem;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+}
+
+.statCard {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.statCard .statIcon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 1rem;
+  color: #667eea;
+}
+
+.statCard .statValue {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.statCard .statLabel {
+  font-size: 0.875rem;
+  color: #666;
+}

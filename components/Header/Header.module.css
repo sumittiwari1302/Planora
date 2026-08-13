@@ -210,6 +210,28 @@
   transform: scale(0.97);
 }
 
+.taskCount {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.taskCountBadge {
+  background: #e5e7eb;
+  color: #374151;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 600;
+  min-width: 20px;
+  text-align: center;
+}
+
+.taskCountLabel {
+  color: #9ca3af;
+}
+
 .avatar {
   display: flex;
   align-items: center;

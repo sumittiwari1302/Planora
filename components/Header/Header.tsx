@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { FiCheckSquare, FiGithub, FiPlus, FiUser } from "react-icons/fi";
+import { useTasks } from "@/hooks/useTasks";
 import styles from "@/components/Header/Header.module.css";
 
 type HeaderProps = {
@@ -20,7 +21,8 @@ const USER_NAME = "Sumit Tiwari";
 const USER_EMAIL = "sumittiwari0307@gmail.com";
 const GITHUB_USERNAME = "sumittiwari1302";
 
-export default function Header({ onAddTask }: HeaderProps) {
+export default function Header() {
+  const { totalTasks } = useTasks();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -46,11 +48,10 @@ export default function Header({ onAddTask }: HeaderProps) {
     };
   }, []);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   function handleAddTask() {
     setMenuOpen(false);
-    if (onAddTask) {
-      onAddTask();
-    }
+    setIsModalOpen(true);
   }
 
   return (
@@ -78,16 +79,14 @@ export default function Header({ onAddTask }: HeaderProps) {
         </nav>
 
         <div className={styles.right}>
-          {onAddTask && (
-            <button
-              type="button"
-              className={styles.addButton}
-              onClick={handleAddTask}
-            >
-              <FiPlus />
-              <span>Add Task</span>
-            </button>
-          )}
+          <button
+            type="button"
+            className={styles.addButton}
+            onClick={handleAddTask}
+          >
+            <FiPlus />
+            <span>Add Task</span>
+          </button>
 
           <div className={styles.profile} ref={menuRef}>
             <button
@@ -127,6 +126,11 @@ export default function Header({ onAddTask }: HeaderProps) {
                 </a>
               </div>
             )}
+          </div>
+
+          <div className={styles.taskCount}>
+            <span className={styles.taskCountBadge}>{totalTasks}</span>
+            <span className={styles.taskCountLabel}>Tasks</span>
           </div>
         </div>
       </div>

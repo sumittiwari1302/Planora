@@ -1,0 +1,53 @@
+.section {
+  padding: 3rem 0;
+}
+
+.section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section .sectionTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+.openingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.openingCard {
+  padding: 2rem 1.5rem;
+  border: 1px solid #eaecef;
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.openingCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.openingCard .openingIcon {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 1rem;
+  color: #667eea;
+}
+
+.openingCard .openingTitle {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+}
+
+.openingCard .openingLocation {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.25rem;
+}

@@ -1,0 +1,29 @@
+.banner {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4rem 0;
+  margin: -1rem -1rem 2rem;
+}
+
+.banner .container {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.banner .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.banner .organizationName {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.banner .tagline {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTasks } from "@/hooks/useTasks";
 import Header from "@/components/Header/Header";
 import TaskStats from "@/components/TaskStats/TaskStats";
@@ -8,6 +8,7 @@ import FilterTabs from "@/components/FilterTabs/FilterTabs";
 import TaskList from "@/components/TaskList/TaskList";
 import AddTaskModal from "@/components/AddTaskModal/AddTaskModal";
 import Footer from "@/components/Footer/Footer";
+import Link from "next/link";
 
 export default function TasksPage() {
   const {
@@ -21,7 +22,12 @@ export default function TasksPage() {
   } = useTasks();
 
   const [filter, setFilter] = useState("All");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const listFilter = urlParams.get("filter") || "All";
+    setFilter(listFilter);
+  }, []);
 
   const visibleTasks = tasks.filter((task) => {
     if (filter === "Completed") {
@@ -37,13 +43,7 @@ export default function TasksPage() {
 
   return (
     <div className="page">
-      <Header onAddTask={() => setIsModalOpen(true)} />
-      {isModalOpen && (
-        <AddTaskModal
-          onClose={() => setIsModalOpen(false)}
-          onAdd={addTask}
-        />
-      )}
+      <Header />
       <main className="container">
         <div className="pageHeading">
           <h1 className="pageTitle">All Tasks</h1>

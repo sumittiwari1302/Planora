@@ -23,7 +23,6 @@ export default function Home() {
   } = useTasks();
 
   const [filter, setFilter] = useState("All");
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const visibleTasks = tasks.filter((task) => {
     if (filter === "Completed") {
@@ -39,13 +38,7 @@ export default function Home() {
 
   return (
     <div className="page">
-      <Header onAddTask={() => setIsModalOpen(true)} />
-      {isModalOpen && (
-        <AddTaskModal
-          onClose={() => setIsModalOpen(false)}
-          onAdd={addTask}
-        />
-      )}
+      <Header />
       <main className="container">
         <Hero />
         <TaskStats

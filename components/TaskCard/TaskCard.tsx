@@ -30,9 +30,16 @@ export default function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
 
       <p className={styles.description}>{task.description}</p>
 
-      <p className={styles.status}>
-        Status: <span className={styles.statusValue}>{statusText}</span>
-      </p>
+      <div className={styles.meta}>
+        <span className={styles.metaItem}>
+          Status: <span className={styles.metaValue}>{statusText}</span>
+        </span>
+        {task.dueDate && (
+          <span className={styles.metaItem}>
+            Due: {task.dueDate}
+          </span>
+        )}
+      </div>
 
       <div className={styles.actions}>
         <button
