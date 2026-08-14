@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { useTasks } from "@/hooks/useTasks";
 import Header from "@/components/Header/Header";
 import TaskStats from "@/components/TaskStats/TaskStats";
@@ -21,12 +20,12 @@ export default function TasksPage() {
   } = useTasks();
 
   const [filter, setFilter] = useState("All");
-  const searchParams = useSearchParams();
-  const storedFilter = searchParams.get("filter") || "All";
 
   useEffect(() => {
-    setFilter(storedFilter);
-  }, [storedFilter]);
+    const urlParams = new URLSearchParams(window.location.search);
+    const listFilter = urlParams.get("filter") || "All";
+    setFilter(listFilter);
+  }, []);
 
   const visibleTasks = tasks.filter((task) => {
     if (filter === "Completed") {
