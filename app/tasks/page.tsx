@@ -56,11 +56,11 @@ export default function TasksPage() {
         />
         <FilterTabs currentFilter={filter} onFilterChange={setFilter} />
         <section className="taskColumn">
-          <TaskList
-            tasks={visibleTasks}
-            onToggle={toggleTask}
-            onDelete={deleteTask}
-          />
+<TaskList
+              tasks={visibleTasks}
+              onToggle={toggleTask}
+              onDelete={deleteTask}
+            />
         </section>
         <footer className="pageFooter">
           <Link href="/tasks" className="btn btn-secondary">

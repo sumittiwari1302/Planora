@@ -1,4 +1,5 @@
 import type { Task } from "@/types/task";
+import Link from "next/link";
 import { FiCheckCircle, FiCircle, FiTrash2 } from "react-icons/fi";
 import styles from "@/components/TaskCard/TaskCard.module.css";
 
@@ -6,6 +7,7 @@ type TaskCardProps = {
   task: Task;
   onToggle: (id: number) => void;
   onDelete: (id: number) => void;
+  onEdit: (id: number) => void;
 };
 
 const priorityStyles = {
@@ -49,10 +51,19 @@ export default function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
           {task.completed ? <FiCheckCircle /> : <FiCircle />}
           {task.completed ? "Mark Pending" : "Mark Completed"}
         </button>
-        <button className={styles.deleteButton} onClick={() => onDelete(task.id)}>
+        <button
+          className={styles.deleteButton}
+          onClick={() => onDelete(task.id)}
+        >
           <FiTrash2 />
           Delete
         </button>
+        <Link
+          href={`/tasks/${task.id}`}
+          className="btn btn-outline"
+        >
+          Edit
+        </Link>
       </div>
     </div>
   );
