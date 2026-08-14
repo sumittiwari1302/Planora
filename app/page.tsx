@@ -8,7 +8,7 @@ import TaskStats from "@/components/TaskStats/TaskStats";
 import TaskForm from "@/components/TaskForm/TaskForm";
 import FilterTabs from "@/components/FilterTabs/FilterTabs";
 import TaskList from "@/components/TaskList/TaskList";
-import AddTaskModal from "@/components/AddTaskModal/AddTaskModal";
+
 import Footer from "@/components/Footer/Footer";
 
 export default function Home() {

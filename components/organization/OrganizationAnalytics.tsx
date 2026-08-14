@@ -4,14 +4,14 @@ import { FiShield, FiUsers } from "react-icons/fi";
 type Stat = {
   label: string;
   value: string | number;
-  icon: React.ReactElement;
+  icon: React.ComponentType;
 };
 
 const STATS: Stat[] = [
-  { label: "Projects", value: "12+", icon: <FiShield /> },
-  { label: "Team Members", value: "24", icon: <FiUsers /> },
-  { label: "Active Users", value: "2,147", icon: <FiShield /> },
-  { label: "Satisfaction", value: "98%", icon: <FiShield /> },
+  { label: "Projects", value: "12+", icon: FiShield },
+  { label: "Team Members", value: "24", icon: FiUsers },
+  { label: "Active Users", value: "2,147", icon: FiShield },
+  { label: "Satisfaction", value: "98%", icon: FiShield },
 ];
 
 export default function OrganizationAnalytics() {
@@ -22,7 +22,7 @@ export default function OrganizationAnalytics() {
         <div className={styles.statsGrid}>
           {STATS.map((stat) => (
             <div key={stat.label} className={styles.statCard}>
-              <stat.icon className={styles.statIcon} />
+              <span className={styles.statIcon}><stat.icon /></span>
               <div>
                 <span className={styles.statValue}>{stat.value}</span>
                 <span className={styles.statLabel}>{stat.label}</span>

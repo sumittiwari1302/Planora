@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import type { Task } from "@/types/task";
-import { getTasks, saveTasks } from "@/utils/storage";
 
 const STORAGE_KEY = "task-tracker-tasks-v2";
 
@@ -115,7 +114,7 @@ export function useTasks() {
 
   useEffect(() => {
     if (loaded) {
-      saveTasks(tasks);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
     }
   }, [tasks, loaded]);
 

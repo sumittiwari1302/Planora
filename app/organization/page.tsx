@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import OrganizationBanner from "@/components/organization/OrganizationBanner";
@@ -13,7 +12,7 @@ import OrganizationAnalytics from "@/components/organization/OrganizationAnalyti
 export default function OrganizationPage() {
   return (
     <div className="page">
-      <Header onAddTask={() => {}} />
+      <Header />
       <main className="container">
         <OrganizationBanner />
         <OrganizationMembers />

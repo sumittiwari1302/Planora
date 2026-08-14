@@ -7,10 +7,6 @@ import { FiCheckSquare, FiGithub, FiPlus, FiUser } from "react-icons/fi";
 import { useTasks } from "@/hooks/useTasks";
 import styles from "@/components/Header/Header.module.css";
 
-type HeaderProps = {
-  onAddTask?: () => void;
-};
-
 const NAV_LINKS = [
   { href: "/", label: "Dashboard" },
   { href: "/tasks", label: "Tasks" },
@@ -48,10 +44,8 @@ export default function Header() {
     };
   }, []);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   function handleAddTask() {
     setMenuOpen(false);
-    setIsModalOpen(true);
   }
 
   return (

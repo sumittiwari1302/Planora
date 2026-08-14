@@ -1,19 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTasks } from "@/hooks/useTasks";
 import Header from "@/components/Header/Header";
 import TaskStats from "@/components/TaskStats/TaskStats";
 import FilterTabs from "@/components/FilterTabs/FilterTabs";
 import TaskList from "@/components/TaskList/TaskList";
-import AddTaskModal from "@/components/AddTaskModal/AddTaskModal";
 import Footer from "@/components/Footer/Footer";
 import Link from "next/link";
 
 export default function TasksPage() {
   const {
     tasks,
-    addTask,
     deleteTask,
     toggleTask,
     totalTasks,
@@ -22,12 +21,12 @@ export default function TasksPage() {
   } = useTasks();
 
   const [filter, setFilter] = useState("All");
+  const searchParams = useSearchParams();
+  const storedFilter = searchParams.get("filter") || "All";
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const listFilter = urlParams.get("filter") || "All";
-    setFilter(listFilter);
-  }, []);
+    setFilter(storedFilter);
+  }, [storedFilter]);
 
   const visibleTasks = tasks.filter((task) => {
     if (filter === "Completed") {
@@ -64,6 +63,11 @@ export default function TasksPage() {
             onDelete={deleteTask}
           />
         </section>
+        <footer className="pageFooter">
+          <Link href="/tasks" className="btn btn-secondary">
+            View All Tasks
+          </Link>
+        </footer>
       </main>
       <Footer />
     </div>
