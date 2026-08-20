@@ -1,13 +1,14 @@
+"use client";
+
 import type { Task } from "@/types/task";
 import Link from "next/link";
-import { FiCheckCircle, FiCircle, FiTrash2 } from "react-icons/fi";
+import { FiCheckCircle, FiCircle, FiTrash2, FiCalendar } from "react-icons/fi";
 import styles from "@/components/TaskCard/TaskCard.module.css";
 
 type TaskCardProps = {
   task: Task;
   onToggle: (id: number) => void;
   onDelete: (id: number) => void;
-  onEdit: (id: number) => void;
 };
 
 const priorityStyles = {
@@ -34,11 +35,15 @@ export default function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
 
       <div className={styles.meta}>
         <span className={styles.metaItem}>
-          Status: <span className={styles.metaValue}>{statusText}</span>
+          {statusText}
         </span>
         {task.dueDate && (
           <span className={styles.metaItem}>
-            Due: {task.dueDate}
+            <FiCalendar style={{ fontSize: 13 }} />
+            {new Date(task.dueDate + "T00:00:00").toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })}
           </span>
         )}
       </div>
@@ -49,7 +54,7 @@ export default function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
           onClick={() => onToggle(task.id)}
         >
           {task.completed ? <FiCheckCircle /> : <FiCircle />}
-          {task.completed ? "Mark Pending" : "Mark Completed"}
+          {task.completed ? "Mark Pending" : "Mark Complete"}
         </button>
         <button
           className={styles.deleteButton}
@@ -60,9 +65,9 @@ export default function TaskCard({ task, onToggle, onDelete }: TaskCardProps) {
         </button>
         <Link
           href={`/tasks/${task.id}`}
-          className="btn btn-outline"
+          className={styles.viewButton}
         >
-          Edit
+          View Details
         </Link>
       </div>
     </div>

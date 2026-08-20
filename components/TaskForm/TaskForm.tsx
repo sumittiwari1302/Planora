@@ -12,6 +12,7 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<"High" | "Medium" | "Low">("Medium");
+  const [dueDate, setDueDate] = useState("");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,7 +26,8 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
       title: title.trim(),
       description: description.trim(),
       completed: false,
-      priority: priority,
+      priority,
+      dueDate: dueDate || undefined,
     };
 
     onAdd(newTask);
@@ -33,6 +35,7 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
     setTitle("");
     setDescription("");
     setPriority("Medium");
+    setDueDate("");
   }
 
   return (
@@ -57,6 +60,14 @@ export default function TaskForm({ onAdd }: TaskFormProps) {
         <option value="Medium">Medium</option>
         <option value="Low">Low</option>
       </select>
+
+      <input
+        className={styles.input}
+        type="date"
+        aria-label="Due date"
+        value={dueDate}
+        onChange={(event) => setDueDate(event.target.value)}
+      />
 
       <textarea
         className={styles.textarea}

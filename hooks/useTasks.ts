@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import type { Task } from "@/types/task";
-
-const STORAGE_KEY = "task-tracker-tasks-v2";
+import { getTasks, saveTasks } from "@/utils/storage";
 
 function createDummyTasks(): Task[] {
   return [
@@ -13,6 +12,7 @@ function createDummyTasks(): Task[] {
       description: "Users are unable to sign in on mobile browsers.",
       completed: false,
       priority: "High",
+      dueDate: "2026-08-25",
     },
     {
       id: 2,
@@ -20,6 +20,7 @@ function createDummyTasks(): Task[] {
       description: "Ship the latest release to the production server.",
       completed: false,
       priority: "High",
+      dueDate: "2026-08-22",
     },
     {
       id: 3,
@@ -41,6 +42,7 @@ function createDummyTasks(): Task[] {
       description: "Document all REST endpoints with examples.",
       completed: false,
       priority: "Medium",
+      dueDate: "2026-09-01",
     },
     {
       id: 6,
@@ -55,6 +57,7 @@ function createDummyTasks(): Task[] {
       description: "Review and merge the three open pull requests.",
       completed: false,
       priority: "Medium",
+      dueDate: "2026-08-28",
     },
     {
       id: 8,
@@ -99,44 +102,46 @@ export function useTasks() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const savedTasks = localStorage.getItem(STORAGE_KEY);
-
-    if (savedTasks) {
-      try {
-        setTasks(JSON.parse(savedTasks));
-      } catch {
-        setTasks(createDummyTasks());
-      }
+    const savedTasks = getTasks();
+    if (savedTasks.length > 0) {
+      setTasks(savedTasks);
     }
-
     setLoaded(true);
   }, []);
 
   useEffect(() => {
     if (loaded) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+      saveTasks(tasks);
     }
   }, [tasks, loaded]);
 
   function addTask(newTask: Task) {
-    setTasks((prevTasks) => [...prevTasks, newTask]);
+    setTasks((prev) => [...prev, newTask]);
   }
 
   function deleteTask(id: number) {
-    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+    setTasks((prev) => prev.filter((task) => task.id !== id));
   }
 
   function toggleTask(id: number) {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
+    setTasks((prev) =>
+      prev.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
     );
   }
 
+  function updateTask(id: number, updates: Partial<Task>) {
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, ...updates } : task
+      )
+    );
+  }
+
   const totalTasks = tasks.length;
-  const completedTasks = tasks.filter((task) => task.completed).length;
-  const pendingTasks = tasks.filter((task) => !task.completed).length;
+  const completedTasks = tasks.filter((t) => t.completed).length;
+  const pendingTasks = tasks.filter((t) => !t.completed).length;
 
   return {
     tasks,
@@ -144,8 +149,10 @@ export function useTasks() {
     addTask,
     deleteTask,
     toggleTask,
+    updateTask,
     totalTasks,
     completedTasks,
     pendingTasks,
+    loaded,
   };
 }

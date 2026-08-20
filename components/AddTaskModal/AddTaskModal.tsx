@@ -13,6 +13,7 @@ export default function AddTaskModal({ onClose, onAdd }: AddTaskModalProps) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<"High" | "Medium" | "Low">("Medium");
+  const [dueDate, setDueDate] = useState("");
 
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
@@ -37,14 +38,11 @@ export default function AddTaskModal({ onClose, onAdd }: AddTaskModalProps) {
       title: title.trim(),
       description: description.trim(),
       completed: false,
-      priority: priority,
+      priority,
+      dueDate: dueDate || undefined,
     };
 
     onAdd(newTask);
-
-    setTitle("");
-    setDescription("");
-    setPriority("Medium");
     onClose();
   }
 
@@ -98,6 +96,17 @@ export default function AddTaskModal({ onClose, onAdd }: AddTaskModalProps) {
             <option value="Medium">Medium</option>
             <option value="Low">Low</option>
           </select>
+
+          <label className={styles.label} htmlFor="modal-dueDate">
+            Due Date
+          </label>
+          <input
+            id="modal-dueDate"
+            className={styles.input}
+            type="date"
+            value={dueDate}
+            onChange={(event) => setDueDate(event.target.value)}
+          />
 
           <label className={styles.label} htmlFor="modal-description">
             Description

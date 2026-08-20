@@ -27,6 +27,8 @@
   font-size: 19px;
   font-weight: 600;
   color: #1c1917;
+  flex: 1;
+  min-width: 0;
 }
 
 .completed .title {
@@ -64,14 +66,10 @@
   line-height: 1.6;
 }
 
-.status {
-  display: none;
-}
-
 .meta {
-  margin-top: 10px;
+  margin-top: 12px;
   display: flex;
-  gap: 12px;
+  gap: 16px;
   font-size: 13px;
   color: #6b7280;
 }
@@ -79,27 +77,19 @@
 .metaItem {
   display: flex;
   align-items: center;
-  gap: 4px;
-}
-
-.metaItem span {
-  color: #6b7280;
-}
-
-.statusValue {
-  font-weight: 600;
-  color: #1c1917;
+  gap: 5px;
 }
 
 .actions {
   margin-top: 20px;
   display: flex;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
 .toggleButton,
-.deleteButton {
+.deleteButton,
+.viewButton {
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -109,11 +99,13 @@
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
   transition: background 0.2s ease, transform 0.1s ease;
 }
 
 .toggleButton:active,
-.deleteButton:active {
+.deleteButton:active,
+.viewButton:active {
   transform: scale(0.97);
 }
 
@@ -133,4 +125,26 @@
 
 .deleteButton:hover {
   background: #fca5a5;
+}
+
+.viewButton {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.viewButton:hover {
+  background: #c7d2fe;
+}
+
+@media (max-width: 520px) {
+  .actions {
+    flex-direction: column;
+  }
+
+  .toggleButton,
+  .deleteButton,
+  .viewButton {
+    width: 100%;
+    justify-content: center;
+  }
 }

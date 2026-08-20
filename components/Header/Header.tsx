@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { FiCheckSquare, FiGithub, FiPlus, FiUser } from "react-icons/fi";
 import { useTasks } from "@/hooks/useTasks";
+import AddTaskModal from "@/components/AddTaskModal/AddTaskModal";
 import styles from "@/components/Header/Header.module.css";
 
 const NAV_LINKS = [
@@ -18,9 +19,10 @@ const USER_EMAIL = "sumittiwari0307@gmail.com";
 const GITHUB_USERNAME = "sumittiwari1302";
 
 export default function Header() {
-  const { totalTasks } = useTasks();
+  const { totalTasks, addTask } = useTasks();
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -44,90 +46,100 @@ export default function Header() {
     };
   }, []);
 
-  function handleAddTask() {
+  const handleAddTask = useCallback(() => {
     setMenuOpen(false);
-  }
+    setModalOpen(true);
+  }, []);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
-        <Link href="/" className={styles.brand}>
-          <span className={styles.logo}>
-            <FiCheckSquare />
-          </span>
-          <span className={styles.brandName}>Planora</span>
-        </Link>
+    <>
+      <header className={styles.header}>
+        <div className={styles.inner}>
+          <Link href="/" className={styles.brand}>
+            <span className={styles.logo}>
+              <FiCheckSquare />
+            </span>
+            <span className={styles.brandName}>Planora</span>
+          </Link>
 
-        <nav className={styles.nav}>
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`${styles.navLink} ${
-                pathname === link.href ? styles.navLinkActive : ""
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+          <nav className={styles.nav}>
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${styles.navLink} ${
+                  pathname === link.href ? styles.navLinkActive : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-        <div className={styles.right}>
-          <button
-            type="button"
-            className={styles.addButton}
-            onClick={handleAddTask}
-          >
-            <FiPlus />
-            <span>Add Task</span>
-          </button>
-
-          <div className={styles.profile} ref={menuRef}>
+          <div className={styles.right}>
             <button
               type="button"
-              className={styles.avatar}
-              aria-label="Profile"
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((open) => !open)}
+              className={styles.addButton}
+              onClick={handleAddTask}
             >
-              <FiUser />
+              <FiPlus />
+              <span>Add Task</span>
             </button>
 
-            {menuOpen && (
-              <div className={styles.menu}>
-                <div className={styles.menuHeader}>
-                  <span className={styles.menuAvatar}>
-                    {USER_NAME.charAt(0)}
-                  </span>
-                  <div className={styles.menuIdentity}>
-                    <span className={styles.menuName}>{USER_NAME}</span>
-                    <span className={styles.menuEmail}>{USER_EMAIL}</span>
+            <div className={styles.profile} ref={menuRef}>
+              <button
+                type="button"
+                className={styles.avatar}
+                aria-label="Profile"
+                aria-expanded={menuOpen}
+                onClick={() => setMenuOpen((open) => !open)}
+              >
+                <FiUser />
+              </button>
+
+              {menuOpen && (
+                <div className={styles.menu}>
+                  <div className={styles.menuHeader}>
+                    <span className={styles.menuAvatar}>
+                      {USER_NAME.charAt(0)}
+                    </span>
+                    <div className={styles.menuIdentity}>
+                      <span className={styles.menuName}>{USER_NAME}</span>
+                      <span className={styles.menuEmail}>{USER_EMAIL}</span>
+                    </div>
                   </div>
+
+                  <a
+                    className={styles.githubLink}
+                    href={`https://github.com/${GITHUB_USERNAME}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    <FiGithub />
+                    <span>{GITHUB_USERNAME}</span>
+                    <span className={styles.arrow} aria-hidden="true">
+                      ↗
+                    </span>
+                  </a>
                 </div>
+              )}
+            </div>
 
-                <a
-                  className={styles.githubLink}
-                  href={`https://github.com/${GITHUB_USERNAME}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  <FiGithub />
-                  <span>{GITHUB_USERNAME}</span>
-                  <span className={styles.arrow} aria-hidden="true">
-                    ↗
-                  </span>
-                </a>
-              </div>
-            )}
-          </div>
-
-          <div className={styles.taskCount}>
-            <span className={styles.taskCountBadge}>{totalTasks}</span>
-            <span className={styles.taskCountLabel}>Tasks</span>
+            <div className={styles.taskCount}>
+              <span className={styles.taskCountBadge}>{totalTasks}</span>
+              <span className={styles.taskCountLabel}>Tasks</span>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {modalOpen && (
+        <AddTaskModal
+          onClose={() => setModalOpen(false)}
+          onAdd={addTask}
+        />
+      )}
+    </>
   );
 }

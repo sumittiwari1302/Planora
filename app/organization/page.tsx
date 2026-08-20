@@ -8,6 +8,7 @@ import OrganizationProjects from "@/components/organization/OrganizationProjects
 import OrganizationHiring from "@/components/organization/OrganizationHiring";
 import ActivityFeed from "@/components/organization/ActivityFeed";
 import OrganizationAnalytics from "@/components/organization/OrganizationAnalytics";
+import OrganizationTeams from "@/components/organization/OrganizationTeams";
 
 export default function OrganizationPage() {
   return (
@@ -18,6 +19,7 @@ export default function OrganizationPage() {
         <OrganizationMembers />
         <OrganizationProjects />
         <OrganizationHiring />
+        <OrganizationTeams />
         <ActivityFeed />
         <OrganizationAnalytics />
       </main>

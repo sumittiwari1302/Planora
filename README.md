@@ -1,62 +1,72 @@
 # Planora - Task Tracker
 
-A complete, production-style Next.js task tracker application with full CRUD operations, dynamic routing, and persistent localStorage data.
+A complete, production-style Next.js task tracker application with full CRUD operations, dynamic routing, persistent localStorage data, search, sort, and a polished UI.
 
-## 📋 Overview
+## Overview
 
 Planora is a feature-rich task manager built with **Next.js 16 (App Router)**, **React 19**, and **TypeScript**. It demonstrates complete task management capabilities including create, read, update, and delete operations, with all data persisted in the browser's `localStorage`.
 
-## ✨ Features
+## Features
 
 ### Core Functionality
 
-- **Create tasks** - Add new tasks with title, description, priority (High/Medium/Low), and due date
-- **View all tasks** - See the complete task list on the `/tasks` page
-- **View individual task** - Dynamic task detail page at `/tasks/[id]` with full task information
-- **Edit tasks** - Modify task title, description, priority, and due date with confirmation
-- **Delete tasks** - Remove tasks with a confirmation dialog
-- **Mark completed/pending** - Toggle task status with visual indicators
+- **Create tasks** — Add new tasks with title, description, priority (High/Medium/Low), and due date
+- **View all tasks** — See the complete task list on the `/tasks` page
+- **View individual task** — Dynamic task detail page at `/tasks/[id]` with full task information
+- **Edit tasks** — Modify task title, description, priority, and due date
+- **Delete tasks** — Remove tasks with a confirmation dialog before permanent removal
+- **Mark completed/pending** — Toggle task status with visual indicators
 
-### Navigation
+### Navigation & Routing
 
-- **`/` (Dashboard)** - Main task tracker with add task form, stats, and task list
-- **`/tasks`** - All tasks page with filtering and task listing
-- **`/tasks/[id]`** - Dynamic route for individual task details (e.g., `/tasks/1`, `/tasks/2`)
-- **`/about`** - About page with application information
+- **`/` (Dashboard)** — Main task tracker with hero, stats, add task form, search, sort, filters, and task list
+- **`/tasks`** — All tasks page with search, sort, filtering, and task listing
+- **`/tasks/[id]`** — Dynamic route for individual task details (e.g., `/tasks/1`, `/tasks/2`)
+- **`/about`** — About page with application information, features, and tech stack
 
 ### Data Persistence
 
-- **localStorage persistence** - All tasks survive page refreshes and browser restarts
-- **Automatic sync** - Create, edit, and delete operations all update localStorage
-- **Graceful fallback** - Handles missing or corrupted localStorage data
+- **localStorage persistence** — All tasks survive page refreshes and browser restarts
+- **Automatic sync** — Create, edit, delete, and toggle operations all update localStorage
+- **Graceful fallback** — Handles missing or corrupted localStorage data
+
+### Search & Sort
+
+- **Search tasks** — Filter tasks by title or description in real-time
+- **Sort by date** — Show newest tasks first (default)
+- **Sort by priority** — High priority tasks appear first
+- **Sort alphabetically** — Tasks ordered by title
 
 ### UI & UX
 
-- **Task cards** with priority badges, status indicators, and action buttons
-- **Add task modal** with form validation
-- **Edit task form** with pre-populated fields
-- **Delete confirmation dialog** before permanent removal
-- **Filter tabs** - All / Pending / Completed
-- **Task statistics** - Total, completed, and pending counts
-- **Responsive design** - Works on mobile, tablet, and desktop
-- **Loading states** and **empty states** handled gracefully
+- **Task cards** with priority badges, status indicators, due dates, and action buttons
+- **Add task modal** (accessible from header) with form validation
+- **Add task form** (inline on dashboard) with title, priority, due date, and description
+- **Edit task form** with pre-populated fields and save/cancel
+- **Delete confirmation modal** — Prevents accidental deletions
+- **Filter tabs** — All / Pending / Completed
+- **Task statistics** — Total, completed, and pending counts with color-coded cards
+- **Empty states** — Helpful messages when no tasks exist or no search results
+- **Loading states** — Graceful loading indicators
+- **Responsive design** — Works on mobile, tablet, and desktop
 
 ### Component Architecture
 
-- **Reusable components** - Header, TaskCard, TaskList, TaskStats, FilterTabs, TaskForm, AddTaskModal, ConfirmDialog, Footer
-- **Custom hook** - `useTasks` encapsulates all task logic and localStorage persistence
-- **Type-safe** - Full TypeScript support with proper type definitions
-- **CSS Modules** - Scoped, modular styling
+- **Reusable components** — Header, TaskCard, TaskList, TaskStats, FilterTabs, TaskForm, AddTaskModal, ConfirmDialog, Footer, Hero
+- **Custom hook** — `useTasks` encapsulates all task logic and localStorage persistence
+- **Type-safe** — Full TypeScript support with proper type definitions
+- **CSS Modules** — Scoped, modular styling per component
+- **Utility module** — `utils/storage.ts` for localStorage read/write helpers
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-- **Next.js 16** - App Router with file-based routing
-- **React 19** - UI library
-- **TypeScript** - Type-safe code
-- **CSS Modules** - Scoped component styling
-- **react-icons** - Icon set
+- **Next.js 16** — App Router with file-based routing
+- **React 19** — UI library
+- **TypeScript** — Type-safe code
+- **CSS Modules** — Scoped component styling
+- **react-icons** — Feather icon set
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -86,55 +96,61 @@ npm run dev
 
 4. **Open** [http://localhost:3000](http://localhost:3000) in your browser
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Planora/
-├── app/                              Pages and layout (Next.js App Router)
-│   ├── layout.tsx                    App frame (metadata, global styles)
-│   ├── globals.css                   Global styles
-│   ├── page.tsx                      / — Dashboard / Home
+├── app/
+│   ├── layout.tsx                 Root layout (metadata, global styles)
+│   ├── globals.css                Global styles
+│   ├── page.tsx                   / — Dashboard / Home
+│   ├── not-found.tsx              Custom 404 page
+│   ├── about/
+│   │   ├── page.tsx               /about — About page
+│   │   └── about.module.css       About page styles
 │   ├── tasks/
-│   │   └── page.tsx                  /tasks — All Tasks
-│   └── about/
-│       └── page.tsx                  /about — About the application
+│   │   ├── page.tsx               /tasks — All Tasks
+│   │   └── [id]/
+│   │       └── page.tsx           /tasks/[id] — Task Details
+│   └── organization/
+│       └── page.tsx               /organization — Org showcase
 │
-├── components/                       Reusable UI components
-│   ├── AddTaskModal/
-│   │   ├── AddTaskModal.tsx          Popup dialog for creating/editing tasks
-│   │   └── AddTaskModal.module.css
-│   ├── ConfirmDialog/
-│   │   ├── ConfirmDialog.tsx         Confirmation dialog for deletions
-│   │   └── ConfirmDialog.module.css
-│   ├── FilterTabs/                   All / Pending / Completed filter pills
-│   ├── Footer/                       Footer with links and copyright
-│   ├── Header/                       Logo, navigation, task count, profile menu, Add Task button
-│   ├── Hero/                         Hero section with branding
-│   ├── TaskCard/                     Single task display with toggle/delete
-│   │   └── TaskCard.module.css
-│   ├── TaskForm/                     Full-width add-task form
-│   ├── TaskList/                     Renders a list of TaskCards
-│   └── TaskStats/                    Total / Completed / Pending counts
-│       └── TaskStats.module.css
+├── components/
+│   ├── Header/                    Sticky nav with logo, links, Add Task, profile
+│   ├── Hero/                      Homepage hero banner
+│   ├── TaskStats/                 Total / Completed / Pending stat cards
+│   ├── TaskForm/                  Inline add-task form
+│   ├── TaskList/                  Renders a list of TaskCards
+│   ├── TaskCard/                  Single task with toggle/delete/view
+│   ├── FilterTabs/                All / Pending / Completed filter pills
+│   ├── AddTaskModal/              Modal dialog for creating tasks
+│   ├── ConfirmDialog/             Confirmation dialog for deletions
+│   ├── Footer/                    Footer with links and copyright
+│   └── organization/              Organization page components
 │
-├── hooks/                          Custom React hooks
-│   └── useTasks.ts                   Shared task state + localStorage logic
+├── hooks/
+│   └── useTasks.ts                Custom hook for task state + localStorage
 │
-├── types/                          TypeScript type definitions
-│   └── task.ts                       The Task type definition
+├── types/
+│   └── task.ts                    TypeScript Task type definition
 │
-├── utils/                          Utility modules
-│   └── storage.js                    localStorage read/write helpers
+├── utils/
+│   └── storage.ts                 localStorage read/write helpers
 │
-├── public/                         Static assets
-├── .gitignore
 ├── package.json
 ├── tsconfig.json
 ├── next.config.ts
 └── README.md
 ```
 
-## 🎯 Minimum Requirements Checklist
+## Available Scripts
+
+- `npm run dev` — Start development server
+- `npm run build` — Build for production
+- `npm run start` — Start production server
+- `npm run lint` — Run ESLint
+
+## Minimum Requirements Checklist
 
 - [x] Multiple Next.js routes (`/`, `/tasks`, `/tasks/[id]`, `/about`)
 - [x] Dynamic route for individual tasks (`/tasks/[id]`)
@@ -153,29 +169,24 @@ Planora/
 - [x] Meaningful Git commits
 - [x] README documentation
 
-## 🌟 Additional Features Implemented
+## Additional Features
 
-- **Due dates** - Each task can have an optional due date displayed on task cards and detail pages
-- **Task counter** - Header shows total task count with badge
-- **Status indicators** - Visual completed/pending badges on task cards
-- **Priority colors** - High (red), Medium (orange), Low (green) priority styling
-- **Edit task with form** - Full edit form with pre-populated fields and save/cancel
-- **Delete confirmation modal** - Prevents accidental deletions
-- **Dynamic routing** - Proper `/tasks/[id]` routes with Next.js App Router
-- **Filter by status** - All / Pending / Completed filtering
-- **View in List** - Link from detail page back to tasks list with filter applied
-- **Comprehensive error handling** - Task not found pages, missing data fallbacks
-- **Full CRUD operations** - All create, read, update, delete operations working
-- **LocalStorage persistence** - All operations (create, edit, delete, toggle) update localStorage
+- **Search** — Search tasks by title or description
+- **Sort** — Sort by newest, priority, or alphabetical
+- **Due dates** — Optional due date with formatted display
+- **Delete confirmation modal** — Prevents accidental deletions
+- **Add task modal** — Opens from the header Add Task button
+- **Dynamic routing** — Proper `/tasks/[id]` routes with Next.js App Router
+- **Empty states** — Helpful messages when no tasks or no search results
+- **Loading states** — Graceful loading indicators
+- **Custom 404 page** — Not-found page for invalid routes
+- **Task counter badge** — Header shows total task count
+- **Priority color coding** — High (red), Medium (amber), Low (green)
+- **Custom hooks** — `useTasks` for centralized state management
+- **TypeScript** — Full type safety across the application
+- **CSS Modules** — Scoped, modular component styling
 
-## 📦 Available Scripts
-
-- `npm run dev` - Start development server (Turbopack)
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-## 📚 Learn More
+## Learn More
 
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React Documentation](https://react.dev/)

@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "@/components/ConfirmDialog/ConfirmDialog.module.css";
 
 type ConfirmDialogProps = {
@@ -5,6 +7,7 @@ type ConfirmDialogProps = {
   onConfirm: () => void;
   onCancel: () => void;
   title: string;
+  message?: string;
   confirmText?: string;
   cancelText?: string;
 };
@@ -14,6 +17,7 @@ export default function ConfirmDialog({
   onConfirm,
   onCancel,
   title,
+  message = "Are you sure you want to delete this task? This action cannot be undone.",
   confirmText = "Delete",
   cancelText = "Cancel",
 }: ConfirmDialogProps) {
@@ -21,9 +25,9 @@ export default function ConfirmDialog({
 
   return (
     <div className={styles.overlay} onClick={onCancel}>
-      <div className={styles.dialog} onClick={(event) => event.stopPropagation()}>
+      <div className={styles.dialog} onClick={(e) => e.stopPropagation()}>
         <div className={styles.dialogHeader}>
-          <h2>{title}</h2>
+          <h2 className={styles.dialogTitle}>{title}</h2>
           <button
             type="button"
             className={styles.closeButton}
@@ -34,7 +38,7 @@ export default function ConfirmDialog({
           </button>
         </div>
 
-        <p className={styles.dialogMessage}>Are you sure you want to delete this task?</p>
+        <p className={styles.dialogMessage}>{message}</p>
 
         <div className={styles.actions}>
           <button
